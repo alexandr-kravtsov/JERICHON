@@ -1,0 +1,22 @@
+sector: bank
+metrics:
+  equity_ratio:
+    weight: 25
+    threshold: 0.08
+    condition: ">"
+  quick_ratio:
+    weight: 20
+    threshold: 1.0
+    condition: ">"
+  roa:
+    weight: 20
+    threshold: 0.01
+    condition: ">"
+  roe:
+    weight: 20
+    threshold: 0.10
+    condition: ">"
+  icr: # запас прочности по процентам
+    weight: 15
+    threshold: 3.0
+    condition: ">"
