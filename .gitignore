@@ -1,52 +1,24 @@
-# ===== ДАННЫЕ И ХРАНИЛИЩЕ (тяжёлые, не нужны в git) =====
-data/
-storage/
-models/
-*.parquet
-*.csv
-*.pkl
-*.h5
-*.joblib
+# 1. Игнорируем ТЯЖЕЛЫЙ storage по умолчанию
+data/for_ml/storage/
 
-# ===== СЕКРЕТЫ И ТОКЕНЫ =====
-.env
-.env.local
-API.env
-*.key
-*.pem
+# 2. РАЗРЕШАЕМ папку с сэмплами (важно: порядок строк имеет значение!)
+!data/for_ml/storage/sample_storage/
+# Если внутри sample_storage лежат .parquet файлы, а ниже есть правило *.parquet, их тоже нужно разрешить:
+!data/for_ml/storage/sample_storage/**/*.parquet
 
-# ===== ЛОГИ =====
-*.log
-logs/
+# 3. Игнорируем мусор, который ты указал
+archive/
+tools/
 
-# ===== PYTHON =====
+# 4. Стандартный мусор Python и IDE
 __pycache__/
 *.py[cod]
 *$py.class
-*.so
-venv/
-.venv/
-env/
-.env/
-*.egg-info/
-dist/
-build/
-
-# ===== JUPYTER =====
-.ipynb_checkpoints/
-*.ipynb_checkpoints
-
-# ===== ОС И IDE =====
-.DS_Store
-Thumbs.db
-desktop.ini
+.env
+.env.local
+*.log
+logs/
 .vscode/
 .idea/
 *.swp
 *.swo
-*~
-
-# ===== ЛОКАЛЬНЫЕ СКРИПТЫ (не для репо) =====
-save_data_today.py
-test.py
-test_pipeline.py

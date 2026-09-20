@@ -1,0 +1,198 @@
+{
+  "companies": {
+    "GAZP": {
+      "ticker": "GAZP",
+      "name": "Газпром",
+      "sector": "industrial",
+      "reporting_standard": "МСФО",
+      "currency": "RUB",
+      "unit": "млн руб",
+      "reports": {
+        "2025": {
+          "period": "FY2025",
+          "date": "2025-12-31",
+          "updated_at": "2026-07-01T00:00:00",
+          "income_statement": {
+            "revenue": 9770671,
+            "operating_expenses": 8360032,
+            "operating_income": 1309766,
+            "financial_income": 1072045,
+            "interest_expense": 472024,
+            "taxes": 664719,
+            "net_income": 1348397,
+            "eps": 52.57
+          },
+          "balance_sheet": {
+            "total_assets": 31890811,
+            "current_assets": 3596395,
+            "cash": 633190,
+            "inventory": 1296508,
+            "receivables": 1241989,
+            "total_equity": 18893689,
+            "total_liabilities": 12997122,
+            "short_term_debt": 1499165,
+            "long_term_debt": 5238487,
+            "total_debt": 6737652
+          },
+          "cash_flow": {
+            "operating_cash_flow": 2867018,
+            "capex": 2594673,
+            "free_cash_flow": 272345,
+            "dividends_paid": 73620
+          },
+          "calculated_metrics": {
+            "net_profit_margin": 13.8,
+            "operating_margin": 13.4,
+            "roe": 7.1,
+            "roa": 4.2,
+            "debt_to_equity": 0.36,
+            "net_debt": 6104462,
+            "payout_ratio": 5.5,
+            "fcf_yield": null,
+            "interest_coverage": 4.2
+          }
+        },
+        "2024": {
+          "period": "FY2024",
+          "date": "2024-12-31",
+          "updated_at": "2026-07-01T00:00:00",
+          "income_statement": {
+            "revenue": 10714686,
+            "operating_expenses": 9051763,
+            "operating_income": 1456390,
+            "financial_income": 1002183,
+            "interest_expense": 1037645,
+            "taxes": 344226,
+            "net_income": 1318710,
+            "eps": 49.15
+          },
+          "balance_sheet": {
+            "total_assets": 30698255,
+            "current_assets": 4368456,
+            "cash": 991889,
+            "inventory": 1305559,
+            "receivables": 1488185,
+            "total_equity": 17660962,
+            "total_liabilities": 13037293,
+            "short_term_debt": 1422056,
+            "long_term_debt": 5292754,
+            "total_debt": 6714810
+          },
+          "cash_flow": {
+            "operating_cash_flow": 2495688,
+            "capex": 2292360,
+            "free_cash_flow": 203328,
+            "dividends_paid": 223576
+          },
+          "calculated_metrics": {
+            "net_profit_margin": 12.3,
+            "operating_margin": 13.6,
+            "roe": 7.5,
+            "roa": 4.3,
+            "debt_to_equity": 0.38,
+            "net_debt": 5722921,
+            "payout_ratio": 17.0,
+            "fcf_yield": null,
+            "interest_coverage": 2.2
+          }
+        }
+      }
+    },
+    "SBER": {
+      "ticker": "SBER",
+      "name": "Сбербанк",
+      "sector": "bank",
+      "reporting_standard": "МСФО",
+      "currency": "RUB",
+      "unit": "млн руб",
+      "reports": {
+        "2025": {
+          "period": "FY2025",
+          "date": "2025-12-31",
+          "updated_at": "2026-07-01T00:00:00",
+          "income_statement": {
+            "revenue": 0,
+            "operating_expenses": null,
+            "operating_income": 2250000,
+            "interest_expense": 593400,
+            "taxes": 544100,
+            "net_income": 1705900,
+            "eps": 77.81
+          },
+          "balance_sheet": {
+            "total_assets": 68814500,
+            "current_assets": null,
+            "cash": 3938000,
+            "inventory": null,
+            "receivables": null,
+            "total_equity": 8346500,
+            "total_liabilities": 60468000,
+            "short_term_debt": 0,
+            "long_term_debt": 507600,
+            "total_debt": 507600
+          },
+          "cash_flow": {
+            "operating_cash_flow": 2996600,
+            "capex": 550200,
+            "free_cash_flow": 2446400,
+            "dividends_paid": 728000
+          },
+          "calculated_metrics": {
+            "net_profit_margin": 0,
+            "operating_margin": 0,
+            "roe": 20.4,
+            "roa": 2.5,
+            "debt_to_equity": 0.06,
+            "net_debt": -3430400,
+            "payout_ratio": 42.7,
+            "fcf_yield": null,
+            "interest_coverage": 4.8
+          }
+        },
+        "2024": {
+          "period": "FY2024",
+          "date": "2024-12-31",
+          "updated_at": "2026-07-01T00:00:00",
+          "income_statement": {
+            "revenue": 0,
+            "operating_expenses": null,
+            "operating_income": 2034600,
+            "interest_expense": 436800,
+            "taxes": 454300,
+            "net_income": 1580300,
+            "eps": 72.03
+          },
+          "balance_sheet": {
+            "total_assets": 60855100,
+            "current_assets": null,
+            "cash": 2252200,
+            "inventory": null,
+            "receivables": null,
+            "total_equity": 7173500,
+            "total_liabilities": 53681600,
+            "short_term_debt": 0,
+            "long_term_debt": 410000,
+            "total_debt": 410000
+          },
+          "cash_flow": {
+            "operating_cash_flow": 1149200,
+            "capex": 545800,
+            "free_cash_flow": 603400,
+            "dividends_paid": 706500
+          },
+          "calculated_metrics": {
+            "net_profit_margin": 0,
+            "operating_margin": 0,
+            "roe": 22.0,
+            "roa": 2.6,
+            "debt_to_equity": 0.06,
+            "net_debt": -1842200,
+            "payout_ratio": 44.7,
+            "fcf_yield": null,
+            "interest_coverage": 5.7
+          }
+        }
+      }
+    }
+  }
+}
