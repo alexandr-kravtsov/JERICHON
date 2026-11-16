@@ -152,9 +152,13 @@ class LiveEngine:
             self.last_update = datetime.now(ZoneInfo("Europe/Moscow"))
 
     def _handle_execution_events(self, ticker, strategy, before_closed, before_position):
-        # Register newly closed-trade intents.  Keep failed submissions in the
-        # pending map so the next engine cycle can retry them.
-        for trade in strategy.trades[before_closed:]:
+        # Register every newly closed local trade as a broker CLOSE intent.
+        # This is deliberately based on the local trade record, not on a new
+        # prediction/CUSUM event.  A vertical-barrier close can happen on a
+        # dollar-bar close without any prediction on that bar, so execution
+        # must still be triggered here.
+        new_closed = strategy.trades[before_closed:]
+        for trade in new_closed:
             key = (
                 ticker,
                 "close",
@@ -165,6 +169,40 @@ class LiveEngine:
                 trade.get("exit_reason"),
             )
             self._pending_close_intents.setdefault(key, trade)
+
+        # Safety fallback: if the strategy had a live position at the start
+        # of this poll but now has no position, a close must be sent even if
+        # the trade ledger was not updated in the expected way.  Prefer the
+        # freshly created trade above; only synthesize a close when no new
+        # trade record exists.  This makes vertical-barrier execution robust
+        # against state/ledger edge cases.
+        if before_position is not None and strategy.position is None and not new_closed:
+            exit_price = strategy.last_trade_price
+            if exit_price is not None:
+                synthetic_trade = {
+                    "entry_time": before_position.get("entry_time"),
+                    "exit_time": strategy.last_processed_time,
+                    "side": before_position.get("side"),
+                    "entry_price": before_position.get("entry_price"),
+                    "exit_price": float(exit_price),
+                    "lots": int(before_position.get("lots", 0)),
+                    "shares": int(before_position.get("shares", 0)),
+                    "exit_reason": "state_close_fallback",
+                }
+                key = (
+                    ticker,
+                    "close",
+                    str(synthetic_trade.get("entry_time")),
+                    str(synthetic_trade.get("exit_time")),
+                    synthetic_trade.get("side"),
+                    float(synthetic_trade.get("exit_price", 0.0)),
+                    synthetic_trade.get("exit_reason"),
+                )
+                self._pending_close_intents.setdefault(key, synthetic_trade)
+                logger.warning(
+                    "BCS CLOSE fallback registered ticker=%s side=%s shares=%s price=%s",
+                    ticker, before_position.get("side"), before_position.get("shares"), exit_price,
+                )
 
         # Register an open intent whenever a local position exists and its
         # corresponding intent has not been successfully submitted yet.  This

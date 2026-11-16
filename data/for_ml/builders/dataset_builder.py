@@ -420,3 +420,25 @@ class DatasetBuilder:
         dataset = pd.concat(all_frames)
         dataset.index.names = ["ticker", "ts"]
         return dataset.sort_index()
+
+    # ------------------------------------------------------------------
+    # Compatibility with the canonical feature pipeline
+    # ------------------------------------------------------------------
+    def archive_raw_day(self, ticker: str, date: str, data: Dict[str, pd.DataFrame]) -> None:
+        """Archive raw AlgoPack frames using the established on-disk layout.
+
+        This compatibility method preserves the historical storage contract:
+        history/realtime/<TICKER>/<YYYY-MM-DD>/{candles,trades,orderbook}.parquet
+        history/supercandles/<TICKER>/<YYYY-MM-DD>/{tradestats,obstats,orderstats}.parquet
+        """
+        self._save_raw_realtime(ticker, date, data)
+        self._save_raw_supercandles(ticker, date, data)
+
+    def build_feature_dataset(self, ticker: str, start_date: str, end_date: str, **kwargs) -> pd.DataFrame:
+        """Delegate to the canonical causal feature pipeline without changing it."""
+        from for_ml.builders.jerichon_feature_pipeline import build_feature_dataset
+
+        kwargs.setdefault("provider", self.provider)
+        kwargs.setdefault("history_path", self.history_path)
+        return build_feature_dataset(ticker, start_date, end_date, **kwargs)
+
